@@ -18,8 +18,8 @@ class Post_model extends CI_Model
     {
         
         $doc = new DOMDocument();
-                $doc->load('application/data/posts/post-'.$whichpost.'.html');
-                
+                $doc->load('application/data/posts/'.$whichpost);
+                //echo 'application/data/posts/'.$whichpost; die;
                 $postcont = $doc->getElementsByTagName("article");
                
                 $desc = '';

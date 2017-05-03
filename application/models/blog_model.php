@@ -33,21 +33,22 @@ class Blog_model extends CI_Model
                     
                     }
                     
-                $filenum = explode('-', $file)[1];
-                $filenum = explode('.', $filenum)[0];
+                //$filenum = explode('-', $file)[1];
+                //$filenum = explode('.', $filenum)[0];
                 
-                $postArray[] = '<article><br>'.$desc.'<br><p><a href="../post/?id='.$filenum.'">Read more</a></p></article>';
+                $postArray[] = '<article><br>'.$desc.'<br><p><a href="../post?id='.$file.'">Read more</a></p></article>';
         }
         
         return $postArray;
     }
  
-    function add_new_entry($body)
+    function add_new_entry($body, $name)
     {        
-        $scanned_directory = array_diff(scandir('application/data/posts/'), array('..', '.'));
+        /*$scanned_directory = array_diff(scandir('application/data/posts/'), array('..', '.'));
         $lastpost = explode('-', array_pop($scanned_directory))[1];
         $lastpost = $lastpost[0] + 1;
-        $myfile = fopen("application/data/posts/post-$lastpost.html", "w");
+        $myfile = fopen("application/data/posts/post-$lastpost.html", "w");*/
+        $myfile = fopen("application/data/posts/$name.html", "w");        
         fwrite($myfile, $body);
         fclose($myfile);
     }

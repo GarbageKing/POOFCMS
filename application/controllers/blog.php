@@ -39,7 +39,7 @@ class Blog extends CI_Controller
             //if valid
             $name = $this->input->post('entry_name');
             $body = '<article><h2>'.$name.'</h2><time>'.date('Y-m-d').'</time>'.$this->input->post('entry_body').'</article>';
-            $this->blog_model->add_new_entry($body);
+            $this->blog_model->add_new_entry($body, $name);
             $this->session->set_flashdata('message', '1 new entry added!');
             redirect('blog/add_new_entry');
         }
