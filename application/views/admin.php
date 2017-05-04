@@ -72,16 +72,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-<form class="navbar-form navbar-right" role= "search" action="<?php echo base_url();?>/index.php/logout/logout"> 
+<form class="navbar-form navbar-right" role= "search" action="<?php echo PRE_INDEX_URL; ?>index.php/logout/logout"> 
     <button type="submit" class="btn btn-default"> Logout</button> 
 </form> 
     <h2>Welcome to the system, <?php $this->load->library('session'); $login_session = $this->session->userdata('userlogin'); 
  echo $login_session['Username']; ?> 
     </h2>       
     <p>You may proceed to creating blogposts:
-    <a href="<?php echo base_url();?>/index.php/blog/add_new_entry">Here</a></p>
+    <a href="<?php echo PRE_INDEX_URL; ?>index.php/blog/add_new_entry">Here</a></p>
+    <p>You may proceed to maintaining blogposts:
+    <a href="<?php echo PRE_INDEX_URL; ?>index.php/PostMaintenance">Here</a></p>
     <p>You may proceed to creating pages:
-    <a href="<?php echo base_url();?>/index.php/page/add_new_entry">Here</a></p>
+    <a href="<?php echo PRE_INDEX_URL; ?>index.php/page/add_new_entry">Here</a></p>
             </div>
         </div>
     </div>

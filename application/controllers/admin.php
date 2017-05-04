@@ -22,7 +22,7 @@ class Admin extends CI_Controller
             $this->load->view('admin');   
             }
             else{
-                redirect('/login');
+                redirect(PRE_INDEX_URL.'index.php/login');
             }
         }
     }

@@ -1,11 +1,9 @@
 <?php
-
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Post_model extends CI_Model
 {
@@ -29,8 +27,11 @@ class Post_model extends CI_Model
                         $desc.= $node->ownerDocument->saveHTML($node);
                     
                     }
-        
-        return $desc;
+                    
+        $name = explode('-', $whichpost, 2)[1];
+        $name = explode('.', $name)[0];
+                    
+        return '<h1>'.$name.'</h1>'.$desc;
     }
     
 }

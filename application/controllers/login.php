@@ -31,7 +31,7 @@
                     {
                     $user_session=array( 'Username' => $this->input->post('username'), 'Password' => $this->input->post('password'), 'is_logged_in' => 1 );
                     $this->session->set_userdata('userlogin',$user_session);                     
-                    redirect('/admin');
+                    redirect(PRE_INDEX_URL.'index.php/admin');
                     }
                     else
                         $this->index(); 

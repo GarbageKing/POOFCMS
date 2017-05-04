@@ -20,7 +20,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <form class="navbar-form navbar-right" role= "search" action="<?php echo base_url();?>/index.php/logout/logout"> 
+                <form class="navbar-form navbar-right" role= "search" action="<?php echo PRE_INDEX_URL; ?>index.php/logout/logout"> 
                         <button type="submit" class="btn btn-default"> Logout</button> 
                 </form> 
                 <h2>Welcome to the system, <?php $this->load->library('session'); $login_session = $this->session->userdata('userlogin'); 
@@ -29,7 +29,7 @@
   <h2>Add new entry</h2>
   <?php echo validation_errors(); ?>
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
-  <?php /*$this->load->view('blog/menu');*/ echo form_open(base_url().'/index.php/blog/add_new_entry');?>
+  <?php /*$this->load->view('blog/menu');*/ echo form_open(PRE_INDEX_URL.'index.php/blog/add_new_entry');?>
   <p>Title:<br />
   <input type="text" name="entry_name" />
   </p>

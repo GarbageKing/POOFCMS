@@ -28,7 +28,7 @@ class Page extends CI_Controller
         $this->load->helper('form');
         $this->load->library(array('form_validation','session'));
         if(!$this->session->userdata('userlogin'))
-            redirect('/');
+            redirect(PRE_INDEX_URL.'index.php');
  
         //set validation rules
         $this->form_validation->set_rules('entry_name', 'Title', 'required|max_length[200]');
@@ -49,7 +49,7 @@ class Page extends CI_Controller
             $body = '<section>'.$this->input->post('entry_body').'</section>';
             $this->page_model->add_new_entry($body, $name);
             $this->session->set_flashdata('message', '1 new page added!');
-            redirect('page/add_new_entry');
+            redirect(PRE_INDEX_URL.'index.php/page/add_new_entry');
         }
     }
 }

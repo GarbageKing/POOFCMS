@@ -71,7 +71,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-    <form class="form-horizontal" role="form" action= "<?php echo base_url();?>/index.php/login/login" method="post"> 
+    <form class="form-horizontal" role="form" action= "<?php echo PRE_INDEX_URL; ?>index.php/login/login" method="post"> 
         <div class="form-group"> 
             <label class="control-label col-sm-2" for="username" >Username:</label> 
             <div class="col-sm-10"> 
