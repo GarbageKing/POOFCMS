@@ -5,28 +5,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+include_once 'application/data/chunks/heading.php';
 ?>
+<div class="row">
+<p>You may proceed to creating blogposts:
+    <a href="<?php echo PRE_INDEX_URL; ?>index.php/blog/add_new_entry">Here</a></p>
+</div>
 
-<!DOCTYPE html>
-<html>
-  <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>Post M</title>
-  <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.min.css"); ?>" />
-</head>
- 
-<body>
-    <div class="container">
         <div class="row">
             <div class="col-xs-12">
-  
+ 
   <?php foreach ($query as $post)
       echo $post . '<br>';
       ?>
             </div>
         </div>
-    </div>
-  <script type="text/javascript" src="<?php echo base_url("assets/js/jquery-3.2.0.min.js"); ?>"></script>
-  <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.min.js"); ?>"></script>
-</body>
-</html>
+
+<?php include_once 'application/data/chunks/footing.php'; ?>

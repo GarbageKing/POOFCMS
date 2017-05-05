@@ -5,15 +5,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
 include_once 'application/data/chunks/heading.php';
 ?>
-
+<div class="row">
+    <p>You may proceed to creating pages:
+    <a href="<?php echo PRE_INDEX_URL; ?>index.php/page/add_new_entry">Here</a></p>
+</div>
 
         <div class="row">
             <div class="col-xs-12">
-  <?php echo $query;   ?>
+  
+  <?php foreach ($query as $page)
+      echo $page . '<br>';
+      ?>
             </div>
         </div>
-  
+
 <?php include_once 'application/data/chunks/footing.php'; ?>

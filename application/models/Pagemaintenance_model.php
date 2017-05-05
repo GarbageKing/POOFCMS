@@ -1,7 +1,7 @@
 <?php
 
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Postmaintenance_model extends CI_Model
+class Pagemaintenance_model extends CI_Model
 {
     
 function __construct()
@@ -9,31 +9,29 @@ function __construct()
     parent::__construct();        
 }
 
-function get_all_posts()
+function get_all_pages()
     {        
-        $postArray = [];
+        $pageArray = [];
         
-        $files = array_diff(scandir('application/data/posts/'), array('..', '.'));
+        $files = array_diff(scandir('application/data/pages/'), array('..', '.'));
         
             foreach($files as $file) {
                                
-                $name = explode('-', $file, 2)[1];            
-                $name = explode('.', $name)[0];
-                $num = explode('-', $file)[0];    
+                //$name = explode('-', $file, 2)[1];            
+                $name = explode('.', $file)[0];
+                //$num = explode('-', $file)[0];    
                 
-                $postArray[$num] = '<div><h2>'.$name.'</h2>'.'<a href="'.PRE_INDEX_URL.'index.php/PostMaintenance/delete?id='.$file.'">Delete</a>'
-                        .'<a href="'.PRE_INDEX_URL.'index.php/PostMaintenance/toUpdate?id='.$file.'">Update</a>'. '</div>';                
+                $pageArray[] = '<div><h2>'.$name.'</h2>'.'<a href="'.PRE_INDEX_URL.'index.php/PageMaintenance/delete?id='.$file.'">Delete</a>'
+                        .'<a href="'.PRE_INDEX_URL.'index.php/PageMaintenance/toUpdate?id='.$file.'">Update</a>'. '</div>';                
         }        
-        
-        krsort($postArray);
-        
-        return $postArray;
+                
+        return $pageArray;
     }
     
-    function delete($whichpost)
+    function delete($whichpage)
     {
         
-        if(unlink('application/data/posts/'.$whichpost))
+        if(unlink('application/data/pages/'.$whichpage))
         {
            echo 'deleted';
         }
@@ -41,12 +39,12 @@ function get_all_posts()
         
     }
     
-    function toUpdate($whichpost)
+    function toUpdate($whichpage)
     {
         $doc = new DOMDocument();
-                $doc->load('application/data/posts/'.$whichpost);
+                $doc->load('application/data/pages/'.$whichpage);
                 
-                $postcont = $doc->getElementsByTagName("article");
+                $postcont = $doc->getElementsByTagName("section");
                
                 $desc = '';
                 foreach ($postcont[0]->childNodes as $node)
@@ -57,12 +55,12 @@ function get_all_posts()
                     }
                     
         //$name = explode('-', $whichpost, 2)[1];
-        $name = explode('.', $whichpost)[0];
+        $name = explode('.', $whichpage)[0];
         
-        $upPost[] = $name;
-        $upPost[] = $desc;
+        $upPage[] = $name;
+        $upPage[] = $desc;
         
-        return $upPost;
+        return $upPage;
     }
     
     function update($body, $name)
@@ -71,8 +69,8 @@ function get_all_posts()
         //$lastpost = count($scanned_directory);//explode('-', array_pop($scanned_directory))[1];
         //$lastpost = $lastpost + 1;
         /*$myfile = fopen("application/data/posts/post-$lastpost.html", "w");*/
-        $myfile = fopen("application/data/posts/$name.html", "w");        
-        $body = '<article>'.$body.'</article>';
+        $myfile = fopen("application/data/pages/$name.html", "w");        
+        $body = '<section>'.$body.'</section>';
         fwrite($myfile, $body);
         fclose($myfile);
     }

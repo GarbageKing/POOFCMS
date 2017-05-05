@@ -1,12 +1,12 @@
 <?php 
 
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class PostMaintenance extends CI_Controller
+class PageMaintenance extends CI_Controller
 {
     function __construct()
     {
         parent::__construct();
-        $this->load->model('postmaintenance_model');
+        $this->load->model('pagemaintenance_model');
         $this->load->helper('url');
     }
  
@@ -14,15 +14,15 @@ class PostMaintenance extends CI_Controller
     {
         //this function will retrive all entry in the database
         $this->load->library('session');
-        $data['query'] = $this->postmaintenance_model->get_all_posts();
-        $this->load->view('postmaintenance/index',$data);
+        $data['query'] = $this->pagemaintenance_model->get_all_pages();
+        $this->load->view('pagemaintenance/index',$data);
     }
  
     function delete()
     {
-        $whichpost = $this->input->get('id');
+        $whichpage = $this->input->get('id');
         
-        $this->postmaintenance_model->delete($whichpost);        
+        $this->pagemaintenance_model->delete($whichpage);        
         
     }
     
@@ -31,11 +31,11 @@ class PostMaintenance extends CI_Controller
         $this->load->helper('form');
         $this->load->library(array('form_validation','session'));
         
-        $whichpost = $this->input->get('id');
+        $whichpage = $this->input->get('id');
         
-        $data['query'] = $this->postmaintenance_model->toUpdate($whichpost);
+        $data['query'] = $this->pagemaintenance_model->toUpdate($whichpage);
         //print_r($data['query']);die;
-        $this->load->view('postmaintenance/update',$data);
+        $this->load->view('pagemaintenance/update',$data);
     }
     
     function update()
@@ -52,16 +52,16 @@ class PostMaintenance extends CI_Controller
         if ($this->form_validation->run() == FALSE)
         {
             //if not valid
-            $this->load->view('postmaintenance/update');
+            $this->load->view('pagemaintenance/update');
         }
         else
         {
             //if valid
             $name = $this->input->post('entry_name');
             $body = $this->input->post('entry_body');
-            $this->postmaintenance_model->update($body, $name);
+            $this->pagemaintenance_model->update($body, $name);
             $this->session->set_flashdata('message', 'Updated!');
-            redirect(PRE_INDEX_URL.'index.php/PostMaintenance/');
+            redirect(PRE_INDEX_URL.'index.php/PageMaintenance/');
         }
     }
     

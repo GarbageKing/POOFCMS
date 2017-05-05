@@ -5,19 +5,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+defined('BASEPATH') OR exit('No direct script access allowed');
+include_once 'application/data/chunks/heading.php';
 ?>
 
-<!DOCTYPE html>
-<html>
-  <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>Blog</title>
-  <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.min.css"); ?>" />
-</head>
- 
-<body>
-    <div class="container">
+
         <div class="row">
             <div class="col-xs-12">
                 <form class="navbar-form navbar-right" role= "search" action="<?php echo PRE_INDEX_URL; ?>index.php/logout/logout"> 
@@ -29,7 +21,7 @@
   <h2>Update post</h2>
   <?php echo validation_errors(); ?>
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
-  <?php /*$this->load->view('blog/menu');*/ echo form_open(PRE_INDEX_URL.'index.php/postmaintenance/update');?>
+  <?php /*$this->load->view('blog/menu');*/ echo form_open(PRE_INDEX_URL.'index.php/PostMaintenance/update');?>
   <p>Title:<br />
   <input type="text" name="entry_name" value="<?php echo $query[0]; ?>"/>
   </p>
@@ -40,8 +32,5 @@
   <?php echo form_close();?>
             </div>
         </div>
-    </div>
-  <script type="text/javascript" src="<?php echo base_url("assets/js/jquery-3.2.0.min.js"); ?>"></script>
-  <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.min.js"); ?>"></script>
-</body>
-</html>
+  
+<?php include_once 'application/data/chunks/footing.php'; ?>
