@@ -5,14 +5,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+$this->load->helper('maindata_helper');
+$maindata = get_data();
+$this->load->helper('menu_helper');
+$menu = get_menu();
 ?>
 
 <!DOCTYPE html>
 <html>
   <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>Blog</title>
+  <title><?php echo $maindata[1]; ?></title>
+  <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
   <link rel="stylesheet" href="<?php echo PRE_INDEX_URL."assets/css/bootstrap.min.css"; ?>" />
+  <link rel="stylesheet" href="<?php echo PRE_INDEX_URL."assets/css/custom.css"; ?>" />
 </head>
  
 <body>
@@ -26,14 +33,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Brand</a>
+        <a class="navbar-brand" href="<?php echo PRE_INDEX_URL; ?>"><?php echo $maindata[0]; ?></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>        
+        <?php foreach($menu as $item) 
+        {echo $item;} ?>       
       </ul>
       
     </div><!-- /.navbar-collapse -->
