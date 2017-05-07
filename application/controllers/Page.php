@@ -46,7 +46,7 @@ class Page extends CI_Controller
             $name = mb_ereg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $name);
             $name = mb_ereg_replace("([\.]{2,})", '', $name);
             
-            $body = '<section>'.$this->input->post('entry_body').'</section>';
+            $body = '<section>'.'<h1>'.$name.'</h1>'.$this->input->post('entry_body').'</section>';
             $this->page_model->add_new_entry($body, $name);
             $this->session->set_flashdata('message', '1 new page added!');
             redirect(PRE_INDEX_URL.'index.php/page/add_new_entry');

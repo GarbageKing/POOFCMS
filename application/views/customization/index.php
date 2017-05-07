@@ -31,6 +31,12 @@ include_once 'application/data/chunks/heading.php';
   <p>Site Copyright (used in Footer):<br />
   <input type="text" name="copyright_info" value="<?php echo $query[2]; ?>"/>
   </p>
+  <p>Blog Title (used on a Blog Page):<br />
+  <input type="text" name="blog_title" value="<?php echo $query[3]; ?>"/>
+  </p>
+  <p>Blog Title Image (used on a Blog Page):<br />
+  <input type="text" name="jumbotron_image" value="<?php echo $query[4]; ?>"/>
+  </p>
   <!--<p>Site Logo (used in Favicon):<br />
   <input type="file" name="favicon" value="<?php //echo $query[3]; ?>"/>
   </p>  -->

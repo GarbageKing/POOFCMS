@@ -16,7 +16,8 @@ class Post_model extends CI_Model
     {
         
         $doc = new DOMDocument();
-                $doc->load('application/data/posts/'.$whichpost);
+        libxml_use_internal_errors(true);
+                $doc->loadHTMLFile('application/data/posts/'.$whichpost);
                 //echo 'application/data/posts/'.$whichpost; die;
                 $postcont = $doc->getElementsByTagName("article");
                
@@ -28,10 +29,13 @@ class Post_model extends CI_Model
                     
                     }
                     
-        $name = explode('-', $whichpost, 2)[1];
-        $name = explode('.', $name)[0];
+        //$name = explode('-', $whichpost, 2)[1];
+        //$name = explode('.', $name)[0];
+                    $namecont = $doc->getElementsByTagName('h1');
+                
+                $name = $namecont[0]->nodeValue;
                     
-        return '<h1>'.$name.'</h1>'.$desc;
+        return $desc;
     }
     
 }

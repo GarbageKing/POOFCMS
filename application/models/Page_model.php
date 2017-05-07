@@ -18,7 +18,8 @@ class Page_model extends CI_Model
     {
         
         $doc = new DOMDocument();
-                $doc->load('application/data/pages/'.$whichpage.'.html');
+        libxml_use_internal_errors(true);
+                $doc->loadHTMLFile('application/data/pages/'.$whichpage.'.html');
                 
                 $pagecont = $doc->getElementsByTagName("section");
                
@@ -29,6 +30,10 @@ class Page_model extends CI_Model
                         $desc.= $node->ownerDocument->saveHTML($node);
                     
                     }
+                    
+                $namecont = $doc->getElementsByTagName('h1');
+                
+                $name = $namecont[0]->nodeValue;
         
         return $desc;
     }
@@ -36,6 +41,17 @@ class Page_model extends CI_Model
     function add_new_entry($body, $name)
     {               
         $myfile = fopen("application/data/pages/$name.html", "w");
+        
+        $body = '<html>'.
+                '<head>'.
+                '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />'.
+                '</head>'. 
+                '<body>'.
+                //'<h1>'.$name.'</h1>'.
+                $body.
+                '</body>'.
+                '</html>';
+        
         fwrite($myfile, $body);
         fclose($myfile);
     }

@@ -41,15 +41,17 @@ class Customization extends CI_Controller
         {            
             $site_name = $this->input->post('site_name');
             $site_title = $this->input->post('site_title');
-            $copyright_info = $this->input->post('copyright_info');           
+            $copyright_info = $this->input->post('copyright_info'); 
+            $blog_title = $this->input->post('blog_title');
+            $jumbotron_image = $this->input->post('jumbotron_image');
             
-            $this->customization_model->customize($site_name, $site_title, $copyright_info);          
+            $this->customization_model->customize($site_name, $site_title, $copyright_info, $blog_title, $jumbotron_image);          
                    
             redirect(PRE_INDEX_URL.'index.php/customization/index');
         }
     }
 
-    public function do_upload() { 
+    /*public function do_upload() { 
          $config['upload_path']   = PRE_INDEX_URL.'assets/files/'; 
          $config['allowed_types'] = 'gif|jpg|png'; 
          $config['max_size']      = 100; 
@@ -59,5 +61,5 @@ class Customization extends CI_Controller
 			
          $this->upload->do_upload();
 	
-      }
+      }*/
 }

@@ -5,7 +5,8 @@ if ( ! function_exists('test_method'))
     function get_menu()
     {
                 $doc = new DOMDocument();
-                $doc->load('application/data/menu/menu.html');
+                libxml_use_internal_errors(true);
+                $doc->loadHTMLFile('application/data/menu/menu.html');
                                 
                 $cont = $doc->getElementsByTagName("span");
                

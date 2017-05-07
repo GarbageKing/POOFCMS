@@ -16,7 +16,8 @@ class Customization_model extends CI_Model
     {
         
                 $doc = new DOMDocument();
-                $doc->load('application/data/info/info.html');
+                libxml_use_internal_errors(true);
+                $doc->loadHTMLFile('application/data/info/info.html');
                 
                 $cont = $doc->getElementsByTagName("li");
                
@@ -32,14 +33,26 @@ class Customization_model extends CI_Model
         return $data;
     }
     
-    function customize($site_name, $site_title, $copyright_info)
+    function customize($site_name, $site_title, $copyright_info, $blog_title, $jumbotron_image)
     {               
         $custfile = fopen("application/data/info/info.html", "w");
         $body = '<ul>'.
                 '<li>'.$site_name.'</li>'.
                 '<li>'.$site_title.'</li>'.
-                '<li>'.$copyright_info.'</li>'.                
+                '<li>'.$copyright_info.'</li>'.      
+                '<li>'.$blog_title.'</li>'. 
+                '<li>'.$jumbotron_image.'</li>'. 
                 '</ul>';
+        
+        $body = '<html>'.
+                '<head>'.
+                '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />'.
+                '</head>'. 
+                '<body>'.
+                $body.
+                '</body>'.
+                '</html>';
+        
         fwrite($custfile, $body);
         fclose($custfile);
     }

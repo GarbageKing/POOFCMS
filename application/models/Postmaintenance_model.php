@@ -17,9 +17,15 @@ function get_all_posts()
         
             foreach($files as $file) {
                                
-                $name = explode('-', $file, 2)[1];            
-                $name = explode('.', $name)[0];
+                //$name = explode('-', $file, 2)[1];            
+                //$name = explode('.', $name)[0];
                 $num = explode('-', $file)[0];    
+                $doc = new DOMDocument();
+                libxml_use_internal_errors(true);
+                $doc->loadHTMLFile('application/data/posts/'.$file);
+                $namecont = $doc->getElementsByTagName('h1');
+                
+                $name = $namecont[0]->nodeValue;
                 
                 $postArray[$num] = '<div><h2>'.$name.'</h2>'.'<a href="'.PRE_INDEX_URL.'index.php/PostMaintenance/delete?id='.$file.'">Delete</a>'
                         .'<a href="'.PRE_INDEX_URL.'index.php/PostMaintenance/toUpdate?id='.$file.'">Update</a>'. '</div>';                
@@ -44,8 +50,10 @@ function get_all_posts()
     function toUpdate($whichpost)
     {
         $doc = new DOMDocument();
-                $doc->load('application/data/posts/'.$whichpost);
+        libxml_use_internal_errors(true);
+                $doc->loadHTMLFile('application/data/posts/'.$whichpost);
                 
+                //$namecont = $doc->getElementsByTagName("h1");
                 $postcont = $doc->getElementsByTagName("article");
                
                 $desc = '';
@@ -55,7 +63,8 @@ function get_all_posts()
                         $desc.= $node->ownerDocument->saveHTML($node);
                     
                     }
-                    
+                
+                //$title = $namecont[0]->nodeValue;
         //$name = explode('-', $whichpost, 2)[1];
         $name = explode('.', $whichpost)[0];
         
@@ -73,6 +82,17 @@ function get_all_posts()
         /*$myfile = fopen("application/data/posts/post-$lastpost.html", "w");*/
         $myfile = fopen("application/data/posts/$name.html", "w");        
         $body = '<article>'.$body.'</article>';
+        
+        $body = '<html>'.
+                '<head>'.
+                '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />'.
+                '</head>'. 
+                '<body>'.
+                //'<h1>'.$name.'</h1>'.
+                $body.
+                '</body>'.
+                '</html>';
+        
         fwrite($myfile, $body);
         fclose($myfile);
     }

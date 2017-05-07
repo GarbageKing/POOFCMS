@@ -13,7 +13,8 @@ function get_all_items()
     {        
         
         $doc = new DOMDocument();
-                $doc->load('application/data/menu/menu.html');
+        libxml_use_internal_errors(true);
+                $doc->loadHTMLFile('application/data/menu/menu.html');
                 
                 $cont = $doc->getElementsByTagName("li");
                 $cont2 = $doc->getElementsByTagName("span");
@@ -50,6 +51,16 @@ function get_all_items()
         
         $myfile = fopen("application/data/menu/menu.html", "w");        
         $body = '<ul>'.$menuitems.'</ul>';
+        
+        $body = '<html>'.
+                '<head>'.
+                '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />'.
+                '</head>'. 
+                '<body>'.
+                $body.
+                '</body>'.
+                '</html>';
+        
         fwrite($myfile, $body);
         fclose($myfile);
     }

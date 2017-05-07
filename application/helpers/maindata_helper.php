@@ -5,7 +5,8 @@ if ( ! function_exists('test_method'))
     function get_data()
     {
                 $doc = new DOMDocument();
-                $doc->load('application/data/info/info.html');
+                libxml_use_internal_errors(true);
+                $doc->loadHTMLFile('application/data/info/info.html');
                 
                 $cont = $doc->getElementsByTagName("li");
                

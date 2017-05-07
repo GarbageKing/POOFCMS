@@ -37,7 +37,7 @@ class Blog extends CI_Controller
         {
             //if valid
             $name = $this->input->post('entry_name');
-            $body = '<article><time>'.date('Y-m-d').'</time>'.$this->input->post('entry_body').'</article>';
+            $body = '<article><h1>'.$name.'</h1><time>'.date('Y-m-d').'</time>'.$this->input->post('entry_body').'</article>';
             $this->blog_model->add_new_entry($body, $name);
             $this->session->set_flashdata('message', '1 new entry added!');
             //$urlchunks = explode('/', base_url(uri_string()));            

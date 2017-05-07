@@ -20,7 +20,8 @@ class Blog_model extends CI_Model
             foreach($files as $file) {
                 
                 $doc = new DOMDocument();
-                $doc->load('application/data/posts/'.$file);
+                libxml_use_internal_errors(true);
+                $doc->loadHTMLFile('application/data/posts/'.$file);
                 
                 $postcont = $doc->getElementsByTagName("article");
                
@@ -34,16 +35,22 @@ class Blog_model extends CI_Model
                     
                 //$filenum = explode('-', $file)[1];
                 //$filenum = explode('.', $filenum)[0];
-                $name = explode('-', $file, 2)[1];
+                //$name = explode('-', $file, 2)[1];
                 $num = explode('-', $file)[0];
-                $name = explode('.', $name)[0];
+                //$name = explode('.', $name)[0];
+                
+                $namecont = $doc->getElementsByTagName('h1');
+                
+                $name = $namecont[0]->nodeValue;
                 
                 //$urlchunks = explode('/', base_url(uri_string()));
                 //$url = '';
                 //for($i=0; $i<4; $i++)
                 //{$url .= $urlchunks[$i] . '/';}
                 
-                $postArray[$num] = '<article><h2>'.$name.'</h2><br>'.$desc.'<br><p><a href="'.PRE_INDEX_URL.'index.php/post?id='.$file.'">Read more</a></p></article>';                
+                $postArray[$num][0] = '<article><h2>'.$name.'</h2><br>';
+                $postArray[$num][1] = $desc;
+                $postArray[$num][2]='<br><p><a href="'.PRE_INDEX_URL.'index.php/post?id='.$file.'">Read more</a></p></article>';                
         }        
         //print_r($postArray); die;
         
@@ -68,8 +75,20 @@ class Blog_model extends CI_Model
         }
         $lastpost = $biggest + 1;
         
-        $myfile = fopen("application/data/posts/$lastpost-$name.html", "w");        
+        $myfile = fopen("application/data/posts/$lastpost-$name.html", "w");     
+        
+        $body = '<html>'.
+                '<head>'.
+                '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />'.
+                '</head>'. 
+                '<body>'.
+                //'<h1>'.$name.'</h1>'.
+                $body.
+                '</body>'.
+                '</html>';
+        
         fwrite($myfile, $body);
         fclose($myfile);
     }
+        
 }
