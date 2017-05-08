@@ -8,7 +8,7 @@ class Blog_model extends CI_Model
         //$this->load->database();
     }
  
-    function get_all_posts()
+    function get_all_posts($sort)
     {
         //get all entry
         //$query = $this->db->get('entry');
@@ -54,7 +54,12 @@ class Blog_model extends CI_Model
         }        
         //print_r($postArray); die;
         
-        krsort($postArray);
+        if($sort == false){
+            krsort($postArray);
+        }
+        else {
+            ksort($postArray);
+        }            
         
         return $postArray;
     }

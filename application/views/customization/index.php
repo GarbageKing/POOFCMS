@@ -37,6 +37,9 @@ include_once 'application/data/chunks/heading.php';
   <p>Blog Title Image (used on a Blog Page):<br />
   <input type="text" name="jumbotron_image" value="<?php echo $query[4]; ?>"/>
   </p>
+  <p>Favicon:<br />
+  <input type="text" name="favicon" value="<?php echo $query[5]; ?>"/>
+  </p>
   <!--<p>Site Logo (used in Favicon):<br />
   <input type="file" name="favicon" value="<?php //echo $query[3]; ?>"/>
   </p>  -->

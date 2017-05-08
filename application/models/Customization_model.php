@@ -33,7 +33,7 @@ class Customization_model extends CI_Model
         return $data;
     }
     
-    function customize($site_name, $site_title, $copyright_info, $blog_title, $jumbotron_image)
+    function customize($site_name, $site_title, $copyright_info, $blog_title, $jumbotron_image, $favicon)
     {               
         $custfile = fopen("application/data/info/info.html", "w");
         $body = '<ul>'.
@@ -42,6 +42,7 @@ class Customization_model extends CI_Model
                 '<li>'.$copyright_info.'</li>'.      
                 '<li>'.$blog_title.'</li>'. 
                 '<li>'.$jumbotron_image.'</li>'. 
+                '<li>'.$favicon.'</li>'. 
                 '</ul>';
         
         $body = '<html>'.

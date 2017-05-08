@@ -11,8 +11,14 @@ class Blog extends CI_Controller
  
     function index()
     {
-        //this function will retrive all entry in the database       
-        $data['query'] = $this->blog_model->get_all_posts();
+        //this function will retrive all entry in the database  
+        $sort = false;
+        $uri = $_SERVER['REQUEST_URI'];
+        if(strpos($uri,'reverse') !== false)
+        {
+            $sort = true;
+        }
+        $data['query'] = $this->blog_model->get_all_posts($sort);
         $this->load->view('blog/index',$data);
     }
  

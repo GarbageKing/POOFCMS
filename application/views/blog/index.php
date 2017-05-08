@@ -9,11 +9,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 include_once 'application/data/chunks/heading.php';
 ?>
 
-
-        <div class="row">
-            <div class="col-xs-12">
-                
-                <?php if($maindata[4] != ''){ ?>
+<div class="row">
+    <div class="col-xs-12">
+        <?php if($maindata[4] != ''){ ?>
                 <style>                   
                     .jumbotron {
                     background-image: url("<?php echo PRE_INDEX_URL.'assets/files/'.$maindata[4]; ?>");
@@ -23,6 +21,11 @@ include_once 'application/data/chunks/heading.php';
                     <div class="jumbotron">
                     <h1><?php echo $maindata[3]; ?></h1>
                     </div>  
+    </div>
+</div>
+
+        <div class="row">
+            <div class="col-xs-10">           
                 
   <?php
   
@@ -35,6 +38,14 @@ include_once 'application/data/chunks/heading.php';
   }
       ?>
             </div>
+        <div class="col-xs-2">
+            <p>Sort posts:</p>
+            <select id="sorting" name="sorting" onchange="location = this.value;">
+                <option disabled selected value> - </option>
+                <option value="<?php echo PRE_INDEX_URL.'index.php/blog' ?>">Newer top</option>
+                <option value="<?php echo PRE_INDEX_URL.'index.php/blog?sort=reverse' ?>">Older top</option>                
+            </select>
+        </div>
         </div>
     
 

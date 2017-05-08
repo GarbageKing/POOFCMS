@@ -8,7 +8,7 @@
 ?>
 
 </div>
-<hr>
+
 <footer class="footer">
     <div class="container">
         <p class="text-center">© <?php echo $maindata[2]; ?></p>        

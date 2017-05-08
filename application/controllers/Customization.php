@@ -44,8 +44,9 @@ class Customization extends CI_Controller
             $copyright_info = $this->input->post('copyright_info'); 
             $blog_title = $this->input->post('blog_title');
             $jumbotron_image = $this->input->post('jumbotron_image');
+            $favicon = $this->input->post('favicon');
             
-            $this->customization_model->customize($site_name, $site_title, $copyright_info, $blog_title, $jumbotron_image);          
+            $this->customization_model->customize($site_name, $site_title, $copyright_info, $blog_title, $jumbotron_image, $favicon);          
                    
             redirect(PRE_INDEX_URL.'index.php/customization/index');
         }

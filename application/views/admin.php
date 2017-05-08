@@ -11,10 +11,16 @@ include_once 'application/data/chunks/heading.php';
     <h2>Welcome to the system, <?php $this->load->library('session'); $login_session = $this->session->userdata('userlogin'); 
  echo $login_session['Username']; ?> 
     </h2>           
-    <p>You may proceed to maintaining blogposts:
+    <p>Blogposts:
     <a href="<?php echo PRE_INDEX_URL; ?>index.php/PostMaintenance">Here</a></p>    
-    <p>You may proceed to maintaining pages:
+    <p>Pages:
     <a href="<?php echo PRE_INDEX_URL; ?>index.php/PageMaintenance">Here</a></p>
+    <p>Site info:
+    <a href="<?php echo PRE_INDEX_URL; ?>index.php/Customization">Here</a></p>
+    <p>Menu:
+    <a href="<?php echo PRE_INDEX_URL; ?>index.php/Menu">Here</a></p>
+    <p>Files:
+    <a href="<?php echo PRE_INDEX_URL; ?>index.php/Files">Here</a></p>
             </div>
         </div>
     

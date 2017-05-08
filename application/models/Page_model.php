@@ -40,7 +40,14 @@ class Page_model extends CI_Model
     
     function add_new_entry($body, $name)
     {               
-        $myfile = fopen("application/data/pages/$name.html", "w");
+        $thefile = "application/data/pages/$name.html";
+        
+        if(file_exists ( $thefile )){
+            $this->session->set_flashdata('message', 'Page with this name already exists!');
+            redirect(PRE_INDEX_URL.'index.php/page/add_new_entry');
+        }
+        else{
+        $myfile = fopen($thefile, "w");
         
         $body = '<html>'.
                 '<head>'.
@@ -54,6 +61,7 @@ class Page_model extends CI_Model
         
         fwrite($myfile, $body);
         fclose($myfile);
+        }
     }
     
 }

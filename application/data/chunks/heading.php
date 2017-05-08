@@ -20,6 +20,9 @@ $menu = get_menu();
   <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
   <link rel="stylesheet" href="<?php echo PRE_INDEX_URL."assets/css/bootstrap.min.css"; ?>" />
   <link rel="stylesheet" href="<?php echo PRE_INDEX_URL."assets/css/custom.css"; ?>" />
+  <?php if($maindata[5] != ''){ ?>
+  <link rel='shortcut icon' type='image/x-icon' href='<?php echo PRE_INDEX_URL."assets/files/".$maindata[5]; ?>' />
+  <?php } ?>
 </head>
  
 <body>
