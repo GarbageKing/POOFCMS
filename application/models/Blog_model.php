@@ -8,7 +8,7 @@ class Blog_model extends CI_Model
         //$this->load->database();
     }
  
-    function get_all_posts($sort)
+    function get_all_posts($sort, $urlCategory)
     {
         //get all entry
         //$query = $this->db->get('entry');
@@ -43,14 +43,17 @@ class Blog_model extends CI_Model
                 
                 $name = $namecont[0]->nodeValue;
                 
-                //$urlchunks = explode('/', base_url(uri_string()));
-                //$url = '';
-                //for($i=0; $i<4; $i++)
-                //{$url .= $urlchunks[$i] . '/';}
+                $catcont = $doc->getElementsByTagName('title');               
+                $category = $catcont[0]->nodeValue;
                 
-                $postArray[$num][0] = '<article><h2>'.$name.'</h2><br>';
-                $postArray[$num][1] = $desc;
-                $postArray[$num][2]='<br><p><a href="'.PRE_INDEX_URL.'index.php/post?id='.$file.'">Read more</a></p></article>';                
+                if($urlCategory == '' || $urlCategory == $category)
+                {
+                    $postArray[$num][0] = '<article><h2>'.$name.'</h2><br>';
+                    $postArray[$num][1] = $desc;
+                    $postArray[$num][2] = '<br><p><a href="'.PRE_INDEX_URL.'index.php/post?id='.$file.'">Read more</a></p></article>'; 
+                    //$postArray[$num][3] = $category;
+                }                              
+                
         }        
         //print_r($postArray); die;
         
@@ -64,7 +67,7 @@ class Blog_model extends CI_Model
         return $postArray;
     }
  
-    function add_new_entry($body, $name)
+    function add_new_entry($body, $name, $category)
     {        
         $scanned_directory = array_diff(scandir('application/data/posts/'), array('..', '.'));
         
@@ -84,6 +87,7 @@ class Blog_model extends CI_Model
         
         $body = '<html>'.
                 '<head>'.
+                '<title>'.$category.'</title>'.
                 '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />'.
                 '</head>'. 
                 '<body>'.

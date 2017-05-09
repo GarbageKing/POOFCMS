@@ -63,6 +63,9 @@ function get_all_posts()
                         $desc.= $node->ownerDocument->saveHTML($node);
                     
                     }
+                    
+                $category = $doc->getElementsByTagName("title");
+                $catName = $category[0]->nodeValue;
                 
                 //$title = $namecont[0]->nodeValue;
         //$name = explode('-', $whichpost, 2)[1];
@@ -70,11 +73,12 @@ function get_all_posts()
         
         $upPost[] = $name;
         $upPost[] = $desc;
+        $upPost[] = $catName;
         
         return $upPost;
     }
     
-    function update($body, $name)
+    function update($body, $name, $category)
     {
         //$scanned_directory = array_diff(scandir('application/data/posts/'), array('..', '.'));
         //$lastpost = count($scanned_directory);//explode('-', array_pop($scanned_directory))[1];
@@ -85,6 +89,7 @@ function get_all_posts()
         
         $body = '<html>'.
                 '<head>'.
+                '<title>'.$category.'</title>'.
                 '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />'.
                 '</head>'. 
                 '<body>'.

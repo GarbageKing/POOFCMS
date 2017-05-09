@@ -8,40 +8,10 @@ and open the template in the editor.
     Author     : ERROR
 */
 
-hr
-{
-    border-top: 1px solid #839496;
-}
 
 time
 {
     display: block;
-}
-
-body
-{
-    background: #00CED1;
-    color: #f8f4ee;
-}
-
-nav, footer
-{
-    background: #01c0c3 !important;    
-}
-
-#sorting, input
-{
-    color: #000;
-}
-
-ul.nav a, .navbar-brand
-{
-    color: #f8f4ee !important;
-}
-
-.footer
-{
-    padding-top:50px;
 }
 
 .navbar

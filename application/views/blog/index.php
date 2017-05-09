@@ -7,6 +7,8 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 include_once 'application/data/chunks/heading.php';
+$this->load->helper('category_helper');
+$categories = get_categories();
 ?>
 
 <div class="row">
@@ -40,11 +42,38 @@ include_once 'application/data/chunks/heading.php';
             </div>
         <div class="col-xs-2">
             <p>Sort posts:</p>
-            <select id="sorting" name="sorting" onchange="location = this.value;">
+            <?php
+            
+            $uri = $_SERVER['REQUEST_URI'];
+            $sign = '';
+            if(strpos($uri, '?') !== false && strpos($uri, '?sort') == false)
+            { 
+                $uripart = explode('?', $uri);
+                $uripart = explode('&', $uripart[1]);
+                $fullurl = 'index.php/blog?'.$uripart[0].'&';                
+            }
+            else
+            { 
+                //$uripart = explode('?', $uri);
+                $fullurl = 'index.php/blog?';
+            }
+            //$uripart = explode('/', $uri);
+            //$uripart = array_pop($uripart);
+            
+            ?>
+            <select id="sorting" name="sorting" onchange="location = this.value;" class="form-control">
                 <option disabled selected value> - </option>
-                <option value="<?php echo PRE_INDEX_URL.'index.php/blog' ?>">Newer top</option>
-                <option value="<?php echo PRE_INDEX_URL.'index.php/blog?sort=reverse' ?>">Older top</option>                
+                <option value="<?php echo PRE_INDEX_URL.$fullurl.'sort=straight'; ?>">Newer top</option>
+                <option value="<?php echo PRE_INDEX_URL.$fullurl.'sort=reverse' ?>">Older top</option>                
             </select>
+            <p>Categories:</p>
+            <ul>
+            <?php foreach($categories as $cat){ ?>
+                
+                <li><a href="<?php echo PRE_INDEX_URL.'index.php/blog?category='.$cat; ?>"><?php echo $cat; ?></a></li>
+                
+            <?php } ?>
+            </ul>
         </div>
         </div>
     

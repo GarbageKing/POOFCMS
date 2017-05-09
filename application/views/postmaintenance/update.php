@@ -7,6 +7,9 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 include_once 'application/data/chunks/heading.php';
+
+$this->load->helper('category_helper');
+$categories = get_categories();
 ?>
 
 
@@ -27,6 +30,16 @@ include_once 'application/data/chunks/heading.php';
   </p>
   <p>Body:<br />
   <textarea id="rTextarea" name="entry_body" rows="5" cols="50" style="resize:none;"><?php echo $query[1]; ?></textarea>
+  </p>
+  <p>Category:<br />
+  <select id="category_name" name="category_name" class="form-control">   
+      <option value="<?php echo $query[2]; ?>"><?php echo $query[2]; ?></option>
+      <?php foreach ($categories as $cat){ ?>
+      
+          <option value="<?php echo $cat; ?>"><?php echo $cat; ?></option>
+          
+      <?php } ?>                            
+  </select>
   </p>
   <input type="submit" value="Submit" />
   <?php echo form_close();?>

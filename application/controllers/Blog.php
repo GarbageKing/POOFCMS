@@ -18,7 +18,13 @@ class Blog extends CI_Controller
         {
             $sort = true;
         }
-        $data['query'] = $this->blog_model->get_all_posts($sort);
+        $urlCategory = '';
+        if(strpos($uri, 'category=') !== false)
+        {
+            $urlCategory = explode('category=', $uri)[1];
+            $urlCategory = explode('&', $urlCategory)[0];
+        }
+        $data['query'] = $this->blog_model->get_all_posts($sort, $urlCategory);
         $this->load->view('blog/index',$data);
     }
  
@@ -44,7 +50,8 @@ class Blog extends CI_Controller
             //if valid
             $name = $this->input->post('entry_name');
             $body = '<article><h1>'.$name.'</h1><time>'.date('Y-m-d').'</time>'.$this->input->post('entry_body').'</article>';
-            $this->blog_model->add_new_entry($body, $name);
+            $category = $this->input->post('category_name');
+            $this->blog_model->add_new_entry($body, $name, $category);
             $this->session->set_flashdata('message', '1 new entry added!');
             //$urlchunks = explode('/', base_url(uri_string()));            
             redirect(PRE_INDEX_URL.'index.php/blog/add_new_entry');

@@ -59,7 +59,8 @@ class PostMaintenance extends CI_Controller
             //if valid
             $name = $this->input->post('entry_name');
             $body = $this->input->post('entry_body');
-            $this->postmaintenance_model->update($body, $name);
+            $category = $this->input->post('category_name');
+            $this->postmaintenance_model->update($body, $name, $category);
             $this->session->set_flashdata('message', 'Updated!');
             redirect(PRE_INDEX_URL.'index.php/PostMaintenance/');
         }
