@@ -51,4 +51,18 @@ class Category extends CI_Controller
             redirect(PRE_INDEX_URL.'index.php/category/');
         }
     }
+    
+    function delete()
+    {
+        $this->load->library(array('form_validation','session'));
+        
+        $whichitem = $this->input->get('id');
+        
+        $this->category_model->delete($whichitem); 
+        
+        $this->session->set_flashdata('message', 'Category deleted');
+        redirect(PRE_INDEX_URL.'index.php/category/');
+        
+    }
+    
 }

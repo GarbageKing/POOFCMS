@@ -27,7 +27,7 @@ $categories = get_categories();
 </div>
 
         <div class="row">
-            <div class="col-xs-10">           
+            <div class="col-md-10">           
                 
   <?php
   
@@ -40,12 +40,12 @@ $categories = get_categories();
   }
       ?>
             </div>
-        <div class="col-xs-2">
+        <div class="col-md-2">
             <p>Sort posts:</p>
             <?php
             
-            $uri = $_SERVER['REQUEST_URI'];
-            $sign = '';
+            $uri = $_SERVER['REQUEST_URI']; 
+            
             if(strpos($uri, '?') !== false && strpos($uri, '?sort') == false)
             { 
                 $uripart = explode('?', $uri);
@@ -74,8 +74,65 @@ $categories = get_categories();
                 
             <?php } ?>
             </ul>
+        </div>            
         </div>
-        </div>
+
+        <?php       
+        
+        if(strpos($uri, 'page=') !== false){
+                
+            $pagenumber = explode('page=', $uri)[1];
+            $pagenumber = explode('&', $pagenumber)[0];   
+            
+            $postAmount = count($query);
+            
+            if($pagenumber*5>=$postAmount)
+            {
+                $nextPageNumber = $pagenumber;
+            }
+            else
+            {
+                $nextPageNumber = $pagenumber+1;
+            }
+            
+            if($pagenumber==1)
+            {
+                $prevPageNumber = $pagenumber;
+            }
+            else
+            {
+                $prevPageNumber = $pagenumber-1;
+            }        
+            
+        
+            $hrefPrev = ltrim(str_replace ( 'page='.$pagenumber , 'page='.$prevPageNumber, $uri),'/');   
+            $hrefNext = ltrim(str_replace ( 'page='.$pagenumber , 'page='.$nextPageNumber, $uri),'/');            
+            
+        }
+        else
+        {
+            if(strpos($uri, '?')==false)
+            {$sign = '?';} 
+            else
+            {$sign = '&';} 
+            if(strpos($uri, 'index.php/blog')!=false){
+            $hrefPrev = ltrim($uri,'/').$sign.'page=1';
+            $hrefNext = ltrim($uri,'/').$sign.'page=2';
+            }
+            else {
+            $hrefPrev = 'index.php/blog'.$sign.'page=1';
+            $hrefNext = 'index.php/blog'.$sign.'page=2';    
+            }
+        }
+        
+        ?>
+
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <a class="pull-left" href="<?php echo PRE_INDEX_URL.$hrefPrev;?>">Previous</a>
+        <a class="pull-right" href="<?php echo PRE_INDEX_URL.$hrefNext;?>">Next</a>
+    </div>
+</div>
     
 
 <?php include_once 'application/data/chunks/footing.php'; ?>

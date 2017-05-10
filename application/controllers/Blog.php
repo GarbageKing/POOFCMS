@@ -14,7 +14,7 @@ class Blog extends CI_Controller
         //this function will retrive all entry in the database  
         $sort = false;
         $uri = $_SERVER['REQUEST_URI'];
-        if(strpos($uri,'reverse') !== false)
+        if(strpos($uri,'sort=reverse') !== false)
         {
             $sort = true;
         }
@@ -24,7 +24,13 @@ class Blog extends CI_Controller
             $urlCategory = explode('category=', $uri)[1];
             $urlCategory = explode('&', $urlCategory)[0];
         }
-        $data['query'] = $this->blog_model->get_all_posts($sort, $urlCategory);
+        $pageUrl = '';
+        if(strpos($uri, 'page=') !== false)
+        {
+            $pageUrl = explode('page=', $uri)[1];
+            $pageUrl = explode('&', $pageUrl)[0];
+        }
+        $data['query'] = $this->blog_model->get_all_posts($sort, $urlCategory, $pageUrl);
         $this->load->view('blog/index',$data);
     }
  

@@ -27,7 +27,8 @@ class Category_model extends CI_Model
                 foreach ($pagecont as $node)
                     {                  
                        
-                        $categories[] = $node->nodeValue;
+                        $categories[] = '<div>'.$node->nodeValue .
+                                '<a href="'.PRE_INDEX_URL.'index.php/Category/delete?id='.$node->nodeValue.'">Delete</a></div>';
                     
                     }              
         
@@ -40,13 +41,29 @@ class Category_model extends CI_Model
         $doc = new DOMDocument();
         libxml_use_internal_errors(true);
         $doc->loadHTMLFile("application/data/categories/categories.html");
-        $doc->getElementsByTagName('ul')->item(0)->appendChild(
-            $doc->createElement('li', $name)            
-        );        
+        $node = $doc->createElement('li', $name);
+        $newNode = $doc->getElementsByTagName('ul')->item(0)->appendChild($node); 
+        $newNode->setAttribute("id", $name);
         
         $catfile = fopen("application/data/categories/categories.html", "w"); 
         fwrite($catfile, $doc->saveHTML());
         fclose($catfile);        
+    }
+    
+    function delete($whichitem)
+    {
+        
+        $doc = new DOMDocument();
+        libxml_use_internal_errors(true);
+        $doc->loadHTMLFile("application/data/categories/categories.html");
+        
+        $liDel = $doc->getElementById($whichitem);
+        $liDel->parentNode->removeChild($liDel); 
+        
+        $catfile = fopen("application/data/categories/categories.html", "w"); 
+        fwrite($catfile, $doc->saveHTML());
+        fclose($catfile);        
+        
     }
     
 }

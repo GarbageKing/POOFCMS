@@ -1,4 +1,4 @@
-<?php 
+ <?php 
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Blog_model extends CI_Model
 {
@@ -8,7 +8,7 @@ class Blog_model extends CI_Model
         //$this->load->database();
     }
  
-    function get_all_posts($sort, $urlCategory)
+    function get_all_posts($sort, $urlCategory, $pageUrl)
     {
         //get all entry
         //$query = $this->db->get('entry');
@@ -62,7 +62,15 @@ class Blog_model extends CI_Model
         }
         else {
             ksort($postArray);
-        }            
+        }       
+        
+        if($pageUrl == '')
+        {
+            $pageUrl = 1;
+        }
+            $pageUrl--; 
+            $postArray = array_slice($postArray, $pageUrl*5, 5, true);
+        
         
         return $postArray;
     }
