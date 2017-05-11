@@ -31,10 +31,10 @@ $categories = get_categories();
                 
   <?php
   
-  foreach ($query as $post){
-      //$headingpart = explode('</time>', $post)[0].'</time>';
-      //$bodypart = explode('</time>', $post)[1];
-      //$everything = $headingpart .     
+  $postAmount = end($query);
+  array_pop($query); 
+  
+  foreach ($query as $post){      
       $subs = '<time>'.explode('<time>',strip_tags($post[1], '<time>'))[1];
       echo $post[0] . mb_substr($subs, 0, 200) . $post[2].'<br>';
   }
@@ -84,7 +84,8 @@ $categories = get_categories();
             $pagenumber = explode('page=', $uri)[1];
             $pagenumber = explode('&', $pagenumber)[0];   
             
-            $postAmount = count($query);
+           // $postAmount = count($query);
+            //echo $postAmount; die;
             
             if($pagenumber*5>=$postAmount)
             {
@@ -111,17 +112,26 @@ $categories = get_categories();
         }
         else
         {
+            //$postAmount = count($query);
+            
             if(strpos($uri, '?')==false)
             {$sign = '?';} 
             else
             {$sign = '&';} 
+            //echo $postAmount; die;
             if(strpos($uri, 'index.php/blog')!=false){
             $hrefPrev = ltrim($uri,'/').$sign.'page=1';
-            $hrefNext = ltrim($uri,'/').$sign.'page=2';
+            if($postAmount>5)
+            {$hrefNext = ltrim($uri,'/').$sign.'page=2';}
+            else
+            {$hrefNext = $hrefPrev;}
             }
             else {
             $hrefPrev = 'index.php/blog'.$sign.'page=1';
-            $hrefNext = 'index.php/blog'.$sign.'page=2';    
+            if($postAmount>5)
+            {$hrefNext = 'index.php/blog'.$sign.'page=2';}
+            else
+            {$hrefNext = $hrefPrev;}
             }
         }
         

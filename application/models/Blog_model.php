@@ -63,6 +63,7 @@ class Blog_model extends CI_Model
         else {
             ksort($postArray);
         }       
+        $fullCount = count($postArray);
         
         if($pageUrl == '')
         {
@@ -70,7 +71,7 @@ class Blog_model extends CI_Model
         }
             $pageUrl--; 
             $postArray = array_slice($postArray, $pageUrl*5, 5, true);
-        
+            $postArray[] = $fullCount;
         
         return $postArray;
     }

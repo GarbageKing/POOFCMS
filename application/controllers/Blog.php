@@ -55,6 +55,8 @@ class Blog extends CI_Controller
         {
             //if valid
             $name = $this->input->post('entry_name');
+            $name = mb_ereg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $name);
+            $name = mb_ereg_replace("([\.]{2,})", '', $name);
             $body = '<article><h1>'.$name.'</h1><time>'.date('Y-m-d').'</time>'.$this->input->post('entry_body').'</article>';
             $category = $this->input->post('category_name');
             $this->blog_model->add_new_entry($body, $name, $category);

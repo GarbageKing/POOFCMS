@@ -23,6 +23,8 @@ include_once 'application/data/chunks/heading.php';
     <a href="<?php echo PRE_INDEX_URL; ?>index.php/Files">Here</a></p>
     <p>Categories:
     <a href="<?php echo PRE_INDEX_URL; ?>index.php/Category">Here</a></p>
+    <p>Styles:
+    <a href="<?php echo PRE_INDEX_URL; ?>index.php/Styles">Here</a></p>
             </div>
         </div>
     

@@ -58,6 +58,8 @@ class PostMaintenance extends CI_Controller
         {
             //if valid
             $name = $this->input->post('entry_name');
+            $name = mb_ereg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $name);
+            $name = mb_ereg_replace("([\.]{2,})", '', $name);
             $body = $this->input->post('entry_body');
             $category = $this->input->post('category_name');
             $this->postmaintenance_model->update($body, $name, $category);

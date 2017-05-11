@@ -58,6 +58,8 @@ class PageMaintenance extends CI_Controller
         {
             //if valid
             $name = $this->input->post('entry_name');
+            $name = mb_ereg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $name);
+            $name = mb_ereg_replace("([\.]{2,})", '', $name);
             $body = $this->input->post('entry_body');
             $this->pagemaintenance_model->update($body, $name);
             $this->session->set_flashdata('message', 'Updated!');
