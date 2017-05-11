@@ -11,7 +11,7 @@
 
 <footer class="footer">
     <div class="container">
-        <p class="text-center">© <?php echo $maindata[2]; ?></p>        
+        <p class="text-center">© <?php echo $maindata[3]; ?></p>        
     </div>
 </footer>
 

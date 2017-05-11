@@ -38,7 +38,8 @@ class Customization extends CI_Controller
             $this->load->view('customization/index');
         }
         else
-        {            
+        {           
+            $default_page = $this->input->post('default_page');
             $site_name = $this->input->post('site_name');
             $site_title = $this->input->post('site_title');
             $copyright_info = $this->input->post('copyright_info'); 
@@ -46,7 +47,7 @@ class Customization extends CI_Controller
             $jumbotron_image = $this->input->post('jumbotron_image');
             $favicon = $this->input->post('favicon');
             
-            $this->customization_model->customize($site_name, $site_title, $copyright_info, $blog_title, $jumbotron_image, $favicon);          
+            $this->customization_model->customize($default_page, $site_name, $site_title, $copyright_info, $blog_title, $jumbotron_image, $favicon);          
                    
             redirect(PRE_INDEX_URL.'index.php/customization/index');
         }

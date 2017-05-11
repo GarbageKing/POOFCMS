@@ -16,12 +16,12 @@ $menu = get_menu();
 <html>
   <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title><?php echo $maindata[1]; ?></title>
+  <title><?php echo $maindata[2]; ?></title>
   <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
   <link rel="stylesheet" href="<?php echo PRE_INDEX_URL."assets/css/bootstrap.min.css"; ?>" />
   <link rel="stylesheet" href="<?php echo PRE_INDEX_URL."assets/css/custom.css"; ?>" />
-  <?php if($maindata[5] != ''){ ?>
-  <link rel='shortcut icon' type='image/x-icon' href='<?php echo PRE_INDEX_URL."assets/files/".$maindata[5]; ?>' />
+  <?php if($maindata[6] != ''){ ?>
+  <link rel='shortcut icon' type='image/x-icon' href='<?php echo PRE_INDEX_URL."assets/files/".$maindata[6]; ?>' />
   <?php } ?>
 </head>
  
@@ -36,7 +36,7 @@ $menu = get_menu();
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-        <a class="navbar-brand" href="<?php echo PRE_INDEX_URL; ?>"><?php echo $maindata[0]; ?></a>
+        <a class="navbar-brand" href="<?php echo PRE_INDEX_URL; ?>"><?php echo $maindata[1]; ?></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

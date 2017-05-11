@@ -13,15 +13,15 @@ $categories = get_categories();
 
 <div class="row">
     <div class="col-xs-12">
-        <?php if($maindata[4] != ''){ ?>
+        <?php if($maindata[5] != ''){ ?>
                 <style>                   
                     .jumbotron {
-                    background-image: url("<?php echo PRE_INDEX_URL.'assets/files/'.$maindata[4]; ?>");
+                    background-image: url("<?php echo PRE_INDEX_URL.'assets/files/'.$maindata[5]; ?>");
                     background-size: cover;}
                 </style>
                 <?php } ?>
                     <div class="jumbotron">
-                    <h1><?php echo $maindata[3]; ?></h1>
+                    <h1><?php echo $maindata[4]; ?></h1>
                     </div>  
     </div>
 </div>
@@ -77,6 +77,7 @@ $categories = get_categories();
         </div>            
         </div>
 
+
         <?php       
         
         if(strpos($uri, 'page=') !== false){
@@ -105,9 +106,12 @@ $categories = get_categories();
                 $prevPageNumber = $pagenumber-1;
             }        
             
+            $uri = explode('blog', $uri)[1];
         
             $hrefPrev = ltrim(str_replace ( 'page='.$pagenumber , 'page='.$prevPageNumber, $uri),'/');   
-            $hrefNext = ltrim(str_replace ( 'page='.$pagenumber , 'page='.$nextPageNumber, $uri),'/');            
+            $hrefPrev = 'index.php/blog'.$hrefPrev; 
+            $hrefNext = ltrim(str_replace ( 'page='.$pagenumber , 'page='.$nextPageNumber, $uri),'/');    
+            $hrefNext = 'index.php/blog'.$hrefNext; 
             
         }
         else
@@ -120,9 +124,12 @@ $categories = get_categories();
             {$sign = '&';} 
             //echo $postAmount; die;
             if(strpos($uri, 'index.php/blog')!=false){
+            $uri = explode('blog', $uri)[1];
             $hrefPrev = ltrim($uri,'/').$sign.'page=1';
+            $hrefPrev = 'index.php/blog'.$hrefPrev; 
             if($postAmount>5)
-            {$hrefNext = ltrim($uri,'/').$sign.'page=2';}
+            {$hrefNext = ltrim($uri,'/').$sign.'page=2';
+            $hrefNext = 'index.php/blog'.$hrefNext;}
             else
             {$hrefNext = $hrefPrev;}
             }
