@@ -28,9 +28,8 @@ class Page extends CI_Controller
         $this->load->helper('form');
         $this->load->library(array('form_validation','session'));
         if(!$this->session->userdata('userlogin'))
-            redirect(PRE_INDEX_URL.'index.php');
- 
-        //set validation rules
+            redirect(PRE_INDEX_URL.'index.php'); 
+        
         $this->form_validation->set_rules('entry_name', 'Title', 'required|max_length[200]');
         $this->form_validation->set_rules('entry_body', 'Body', 'required');
  
@@ -42,6 +41,9 @@ class Page extends CI_Controller
         else
         {
             //if valid
+            if(!$this->input->post('entry_name'))
+            { redirect(PRE_INDEX_URL.'index.php'); end;}
+            
             $name = $this->input->post('entry_name');
             $name = mb_ereg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $name);
             $name = mb_ereg_replace("([\.]{2,})", '', $name);

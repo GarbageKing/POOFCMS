@@ -11,16 +11,22 @@ class PostMaintenance extends CI_Controller
     }
  
     function index()
-    {
-        //this function will retrive all entry in the database
+    {        
         $this->load->library('session');
+        if(!$this->session->userdata('userlogin'))
+            redirect(PRE_INDEX_URL.'index.php/');
+        
         $data['query'] = $this->postmaintenance_model->get_all_posts();
         $this->load->view('postmaintenance/index',$data);
     }
  
     function delete()
     {
-        $whichpost = $this->input->get('id');
+        $this->load->library('session');
+        if(!$this->session->userdata('userlogin'))
+            redirect(PRE_INDEX_URL.'index.php/');
+        
+        $whichpost = $this->input->get('id');   
         
         $this->postmaintenance_model->delete($whichpost);        
         
@@ -34,7 +40,7 @@ class PostMaintenance extends CI_Controller
         $whichpost = $this->input->get('id');
         
         $data['query'] = $this->postmaintenance_model->toUpdate($whichpost);
-        //print_r($data['query']);die;
+        
         $this->load->view('postmaintenance/update',$data);
     }
     
@@ -44,8 +50,7 @@ class PostMaintenance extends CI_Controller
         $this->load->library(array('form_validation','session'));
         if(!$this->session->userdata('userlogin'))
             redirect(PRE_INDEX_URL.'index.php/');
- 
-        //set validation rules
+         
         $this->form_validation->set_rules('entry_name', 'Title', 'required|max_length[200]');
         $this->form_validation->set_rules('entry_body', 'Body', 'required');
  
@@ -57,6 +62,9 @@ class PostMaintenance extends CI_Controller
         else
         {
             //if valid
+            if(!$this->input->post('entry_name'))
+            { redirect(PRE_INDEX_URL.'index.php'); end;}
+            
             $name = $this->input->post('entry_name');
             $name = mb_ereg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $name);
             $name = mb_ereg_replace("([\.]{2,})", '', $name);

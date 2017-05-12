@@ -10,10 +10,10 @@ class Customization extends CI_Controller
     }
  
     function index()
-    {
-        //this function will retrive all entry in the database      
-        $this->load->library('session');
+    {        
         $this->load->library(array('form_validation','session'));
+        if(!$this->session->userdata('userlogin'))
+            redirect(PRE_INDEX_URL.'index.php');
         
         $data['query'] = $this->customization_model->get_all_customs();
         $this->load->view('customization/index',$data);
@@ -27,7 +27,7 @@ class Customization extends CI_Controller
         if(!$this->session->userdata('userlogin'))
             redirect(PRE_INDEX_URL.'index.php');
  
-        //set validation rules
+        
         $this->form_validation->set_rules('site_title', 'Site Title', 'required|max_length[200]');
         $this->form_validation->set_rules('site_name', 'Site Name', 'required|max_length[200]');
         $this->form_validation->set_rules('copyright_info', 'Copyright Info', 'max_length[200]');
@@ -47,21 +47,11 @@ class Customization extends CI_Controller
             $jumbotron_image = $this->input->post('jumbotron_image');
             $favicon = $this->input->post('favicon');
             
+            
             $this->customization_model->customize($default_page, $site_name, $site_title, $copyright_info, $blog_title, $jumbotron_image, $favicon);          
                    
             redirect(PRE_INDEX_URL.'index.php/customization/index');
         }
     }
 
-    /*public function do_upload() { 
-         $config['upload_path']   = PRE_INDEX_URL.'assets/files/'; 
-         $config['allowed_types'] = 'gif|jpg|png'; 
-         $config['max_size']      = 100; 
-         $config['max_width']     = 1024; 
-         $config['max_height']    = 768;  
-         $this->load->library('upload', $config);
-			
-         $this->upload->do_upload();
-	
-      }*/
 }

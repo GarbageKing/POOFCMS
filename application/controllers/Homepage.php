@@ -11,13 +11,7 @@ class Homepage extends CI_Controller
     }
  
     function index()
-    {
-        $this->load->helper('form');
-        $this->load->library(array('form_validation','session'));
-        if(!$this->session->userdata('userlogin'))
-            redirect(PRE_INDEX_URL.'index.php');
-        
-        $this->load->library('session');
+    {        
         $data['query'] = $this->homepage_model->get_homepage();
         $this->load->view('homepage/index',$data);
     } 
@@ -27,17 +21,22 @@ class Homepage extends CI_Controller
         $this->load->helper('form');
         $this->load->library(array('form_validation','session'));
         
+        if(!$this->session->userdata('userlogin'))
+            redirect(PRE_INDEX_URL.'index.php');
+        
         $data['query'] = $this->homepage_model->toUpdate();
-        //print_r($data['query']);die;
+        
         $this->load->view('homepage/update',$data);
     }
     
     function update()
     {                              
-            //$this->load->view('homepage/update');
+            
+            if(!$this->input->post('homepage'))
+            { redirect(PRE_INDEX_URL.'index.php'); end;}
  
             $homepage = $this->input->post('homepage');                 
-            //echo $styles; die;
+            
             $this->homepage_model->update($homepage);          
                    
             redirect(PRE_INDEX_URL.'index.php/homepage/toUpdate');        

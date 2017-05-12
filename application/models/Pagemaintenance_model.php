@@ -16,11 +16,7 @@ function get_all_pages()
         $files = array_diff(scandir('application/data/pages/'), array('..', '.'));
         
             foreach($files as $file) {
-                               
-                //$name = explode('-', $file, 2)[1];            
-                //$name = explode('.', $file)[0];
-                //$num = explode('-', $file)[0];    
-                
+                                
                 $doc = new DOMDocument();
                 libxml_use_internal_errors(true);
                 $doc->loadHTMLFile('application/data/pages/'.$file);
@@ -60,9 +56,8 @@ function get_all_pages()
                        
                         $desc.= $node->ownerDocument->saveHTML($node);
                     
-                    }
-                    
-        //$name = explode('-', $whichpost, 2)[1];
+                    }                    
+        
         $name = explode('.', $whichpage)[0];
         
         $upPage[] = $name;
@@ -72,11 +67,7 @@ function get_all_pages()
     }
     
     function update($body, $name)
-    {
-        //$scanned_directory = array_diff(scandir('application/data/posts/'), array('..', '.'));
-        //$lastpost = count($scanned_directory);//explode('-', array_pop($scanned_directory))[1];
-        //$lastpost = $lastpost + 1;
-        /*$myfile = fopen("application/data/posts/post-$lastpost.html", "w");*/
+    {        
         $myfile = fopen("application/data/pages/$name.html", "w");        
         $body = '<section>'.$body.'</section>';
         
@@ -84,8 +75,7 @@ function get_all_pages()
                 '<head>'.
                 '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />'.
                 '</head>'. 
-                '<body>'.
-                //'<h1>'.$name.'</h1>'.
+                '<body>'.                
                 $body.
                 '</body>'.
                 '</html>';

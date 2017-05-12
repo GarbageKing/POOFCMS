@@ -16,9 +16,7 @@ function get_all_posts()
         $files = array_diff(scandir('application/data/posts/'), array('..', '.'));
         
             foreach($files as $file) {
-                               
-                //$name = explode('-', $file, 2)[1];            
-                //$name = explode('.', $name)[0];
+                
                 $num = explode('-', $file)[0];    
                 $doc = new DOMDocument();
                 libxml_use_internal_errors(true);
@@ -53,7 +51,6 @@ function get_all_posts()
         libxml_use_internal_errors(true);
                 $doc->loadHTMLFile('application/data/posts/'.$whichpost);
                 
-                //$namecont = $doc->getElementsByTagName("h1");
                 $postcont = $doc->getElementsByTagName("article");
                
                 $desc = '';
@@ -65,10 +62,8 @@ function get_all_posts()
                     }
                     
                 $category = $doc->getElementsByTagName("title");
-                $catName = $category[0]->nodeValue;
+                $catName = $category[0]->nodeValue;                
                 
-                //$title = $namecont[0]->nodeValue;
-        //$name = explode('-', $whichpost, 2)[1];
         $name = explode('.', $whichpost)[0];
         
         $upPost[] = $name;
@@ -79,11 +74,7 @@ function get_all_posts()
     }
     
     function update($body, $name, $category)
-    {
-        //$scanned_directory = array_diff(scandir('application/data/posts/'), array('..', '.'));
-        //$lastpost = count($scanned_directory);//explode('-', array_pop($scanned_directory))[1];
-        //$lastpost = $lastpost + 1;
-        /*$myfile = fopen("application/data/posts/post-$lastpost.html", "w");*/
+    {        
         $myfile = fopen("application/data/posts/$name.html", "w");        
         $body = '<article>'.$body.'</article>';
         
@@ -92,8 +83,7 @@ function get_all_posts()
                 '<title>'.$category.'</title>'.
                 '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />'.
                 '</head>'. 
-                '<body>'.
-                //'<h1>'.$name.'</h1>'.
+                '<body>'.                
                 $body.
                 '</body>'.
                 '</html>';

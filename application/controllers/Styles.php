@@ -24,9 +24,11 @@ class Styles extends CI_Controller
     
     function update()
     {       
- 
+            if(!$this->input->post('styles'))
+            { redirect(PRE_INDEX_URL.'index.php'); end;}            
+             
             $styles = $this->input->post('styles');                 
-            //echo $styles; die;
+            
             $this->styles_model->update($styles);          
                    
             redirect(PRE_INDEX_URL.'index.php/styles/index');        

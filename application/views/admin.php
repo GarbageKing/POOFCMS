@@ -11,20 +11,11 @@ include_once 'application/data/chunks/heading.php';
     <h2>Welcome to the system, <?php $this->load->library('session'); $login_session = $this->session->userdata('userlogin'); 
  echo $login_session['Username']; ?> 
     </h2>           
-    <p>Blogposts:
-    <a href="<?php echo PRE_INDEX_URL; ?>index.php/PostMaintenance">Here</a></p>    
-    <p>Pages:
-    <a href="<?php echo PRE_INDEX_URL; ?>index.php/PageMaintenance">Here</a></p>
-    <p>Site info:
-    <a href="<?php echo PRE_INDEX_URL; ?>index.php/Customization">Here</a></p>
-    <p>Menu:
-    <a href="<?php echo PRE_INDEX_URL; ?>index.php/Menu">Here</a></p>
-    <p>Files:
-    <a href="<?php echo PRE_INDEX_URL; ?>index.php/Files">Here</a></p>
-    <p>Categories:
-    <a href="<?php echo PRE_INDEX_URL; ?>index.php/Category">Here</a></p>
-    <p>Styles:
-    <a href="<?php echo PRE_INDEX_URL; ?>index.php/Styles">Here</a></p>
+    
+            <?php include_once 'application/data/chunks/admin_navbar.php'; ?>  
+                
+                <h2 style="text-align: center; padding-top: 100px;">You can proceed to edit your site from the menu above!</h2>
+                
             </div>
         </div>
     

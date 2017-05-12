@@ -1,11 +1,5 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Page_model extends CI_Model
 {
@@ -53,8 +47,7 @@ class Page_model extends CI_Model
                 '<head>'.
                 '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />'.
                 '</head>'. 
-                '<body>'.
-                //'<h1>'.$name.'</h1>'.
+                '<body>'.                
                 $body.
                 '</body>'.
                 '</html>';

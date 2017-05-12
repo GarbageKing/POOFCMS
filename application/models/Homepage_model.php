@@ -19,15 +19,7 @@ function get_homepage()
                 $content = $doc->getElementsByTagName("section")[0];
                 
                 $homecont = $content->ownerDocument->saveHTML($content);
-               
-                //$desc = '';
-                //foreach ($homecont[0]->childNodes as $node)
-                 //   {                  
-                 //      
-                 //       $desc.= $node->ownerDocument->saveHTML($node);
-                  //  
-                 //   }
-                
+                               
         return $homecont;
     }    
     
@@ -37,19 +29,33 @@ function get_homepage()
         libxml_use_internal_errors(true);
                 $doc->loadHTMLFile('application/data/homepage/homepage.html');
                 
+                if($doc->getElementsByTagName("section")[0]){
+                
                 $content = $doc->getElementsByTagName("section")[0];
                
                 $homecont = $content->ownerDocument->saveHTML($content);
+                }
+                else $homecont = '<section></section>';
         
         return $homecont;
     }
     
     function update($homepage)
-    {               
-        //echo $homepage; die;
-        $myfile = fopen("application/data/homepage/homepage.html", "w");       
+    {    
+        $myfile = fopen("application/data/homepage/homepage.html", "w");    
         
-        fwrite($myfile, $homepage);
+        $body = '<html>'.
+                '<head>'.
+                '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />'.
+                '</head>'. 
+                '<body>'.  
+                '<section>'.
+                $homepage.
+                '</section>'.
+                '</body>'.
+                '</html>';
+        
+        fwrite($myfile, $body);
         fclose($myfile);
     }
 }

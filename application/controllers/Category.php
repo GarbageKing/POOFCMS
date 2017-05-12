@@ -1,11 +1,5 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Category extends CI_Controller
 {
@@ -17,9 +11,11 @@ class Category extends CI_Controller
     }
     
     function index()
-    {        
-        $this->load->library('session');
+    {                
         $this->load->library(array('form_validation','session'));
+        if(!$this->session->userdata('userlogin'))
+            redirect(PRE_INDEX_URL.'index.php');
+        
         $data['query'] = $this->category_model->get_all_cats();
         $this->load->view('category/index',$data);
     }   
@@ -30,8 +26,7 @@ class Category extends CI_Controller
         $this->load->library(array('form_validation','session'));
         if(!$this->session->userdata('userlogin'))
             redirect(PRE_INDEX_URL.'index.php');
- 
-        //set validation rules
+         
         $this->form_validation->set_rules('category_name', 'Name', 'required|max_length[200]');
          
         if ($this->form_validation->run() == FALSE)
@@ -42,6 +37,9 @@ class Category extends CI_Controller
         else
         {
             //if valid
+            if(!$this->input->post('category_name'))
+            { redirect(PRE_INDEX_URL.'index.php'); end;}
+            
             $name = $this->input->post('category_name');
             $name = mb_ereg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $name);
             $name = mb_ereg_replace("([\.]{2,})", '', $name);            

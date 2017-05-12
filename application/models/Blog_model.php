@@ -4,19 +4,15 @@ class Blog_model extends CI_Model
 {
     function __construct()
     {
-        parent::__construct();
-        //$this->load->database();
+        parent::__construct();        
     }
  
     function get_all_posts($sort, $urlCategory, $pageUrl)
-    {
-        //get all entry
-        //$query = $this->db->get('entry');
-        //return $query->result();
+    {        
         $postArray = [];
         
         $files = array_diff(scandir('application/data/posts/'), array('..', '.'));
-        //print_r($files); die;
+        
             foreach($files as $file) {
                 
                 $doc = new DOMDocument();
@@ -32,12 +28,8 @@ class Blog_model extends CI_Model
                         $desc.= $node->ownerDocument->saveHTML($node);
                     
                     }
-                    
-                //$filenum = explode('-', $file)[1];
-                //$filenum = explode('.', $filenum)[0];
-                //$name = explode('-', $file, 2)[1];
+                
                 $num = explode('-', $file)[0];
-                //$name = explode('.', $name)[0];
                 
                 $namecont = $doc->getElementsByTagName('h1');
                 
@@ -51,11 +43,11 @@ class Blog_model extends CI_Model
                     $postArray[$num][0] = '<article><h2>'.$name.'</h2><br>';
                     $postArray[$num][1] = $desc;
                     $postArray[$num][2] = '<br><p><a href="'.PRE_INDEX_URL.'index.php/post?id='.$file.'">Read more</a></p></article>'; 
-                    //$postArray[$num][3] = $category;
+                    
                 }                              
                 
         }        
-        //print_r($postArray); die;
+        
         
         if($sort == false){
             krsort($postArray);
@@ -99,8 +91,7 @@ class Blog_model extends CI_Model
                 '<title>'.$category.'</title>'.
                 '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />'.
                 '</head>'. 
-                '<body>'.
-                //'<h1>'.$name.'</h1>'.
+                '<body>'.                
                 $body.
                 '</body>'.
                 '</html>';

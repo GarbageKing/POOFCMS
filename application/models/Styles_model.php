@@ -18,8 +18,7 @@ function get_styles()
     }    
     
     function update($styles)
-    {               
-        //echo $styles; die;
+    {           
         $myfile = fopen("assets/css/custom.css", "w");       
         
         fwrite($myfile, $styles);

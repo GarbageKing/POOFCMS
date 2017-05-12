@@ -18,8 +18,8 @@ class Post extends CI_Controller
     
     function index()
     {       
-        $whichpost = $this->input->get('id');//$this->uri->segment(3);
-        //echo $whichpost; die;
+        $whichpost = $this->input->get('id');
+        
         $data['query'] = $this->post_model->get_post($whichpost);
         $this->load->view('blog/post',$data);
     }    

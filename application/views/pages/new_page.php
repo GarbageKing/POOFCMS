@@ -1,10 +1,5 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 defined('BASEPATH') OR exit('No direct script access allowed');
 include_once 'application/data/chunks/heading.php';
 ?>
@@ -18,10 +13,11 @@ include_once 'application/data/chunks/heading.php';
                 <h2>Welcome to the system, <?php $this->load->library('session'); $login_session = $this->session->userdata('userlogin'); 
                     echo $login_session['Username']; ?> 
                 </h2>
+                <?php include_once 'application/data/chunks/admin_navbar.php'; ?>
   <h2>Add new entry</h2>
   <?php echo validation_errors(); ?>
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
-  <?php /*$this->load->view('blog/menu');*/ echo form_open(PRE_INDEX_URL.'index.php/page/add_new_entry');?>
+  <?php echo form_open(PRE_INDEX_URL.'index.php/page/add_new_entry');?>
   <p>Title:<br />
   <input type="text" name="entry_name" />
   </p>

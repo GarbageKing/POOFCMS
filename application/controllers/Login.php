@@ -38,9 +38,4 @@
                     } 
                     
             } 
-                   /* public function admin() 
-                            { 
-                        $this->load->view('admin'); 
-                        
-                            } */
         }

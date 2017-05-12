@@ -11,15 +11,16 @@ class Files extends CI_Controller {
         public function index()
         {                
                 $this->load->library('session');
-                $this->load->library(array('form_validation','session'));
+                if(!$this->session->userdata('userlogin'))
+                    redirect(PRE_INDEX_URL.'index.php/');
+                
                 $files_uploaded = array_diff(scandir('assets/files/'), array('..', '.'));
                 $data['files_uploaded'] = $files_uploaded;
                 $this->load->view('files/index', $data, array('error' => ' ' ));
         }
 
         public function upload()
-        {
-            //print_r($_FILES);die;
+        {            
                 $this->load->library('session');
                 $this->load->library(array('form_validation','session'));
                 if(!$this->session->userdata('userlogin'))
@@ -31,8 +32,7 @@ class Files extends CI_Controller {
                 //$config['max_width']            = 1024;
                 //$config['max_height']           = 768;
                 
-                $this->load->library('upload', $config);       
-                //$this->upload->initialize($config);
+                $this->load->library('upload', $config);                   
 
                 if ( ! $this->upload->do_upload('userfile'))
                 {                        
