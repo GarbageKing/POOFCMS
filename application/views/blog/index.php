@@ -41,10 +41,10 @@ $categories = get_categories();
             <?php include_once 'application/data/chunks/blog_sorting.php'; ?>
             
             <p>Categories:</p>
-            <ul>
+            <ul class="blog_cats">
             <?php foreach($categories as $cat){ ?>
                 
-                <li><a href="<?php echo PRE_INDEX_URL.'index.php/blog?category='.$cat; ?>"><?php echo $cat; ?></a></li>
+                <li><a href="<?php echo PRE_INDEX_URL.'index.php/blog?category='.$cat; ?>"><?php echo str_replace('_', ' ', $cat); ?></a></li>
                 
             <?php } ?>
             </ul>

@@ -7,14 +7,9 @@ include_once 'application/data/chunks/heading.php';
 
         <div class="row">
             <div class="col-xs-12">
-                <form class="navbar-form navbar-right" role= "search" action="<?php echo PRE_INDEX_URL; ?>index.php/logout/logout"> 
-                        <button type="submit" class="btn btn-default"> Logout</button> 
-                </form> 
-                <h2>Welcome to the system, <?php $this->load->library('session'); $login_session = $this->session->userdata('userlogin'); 
-                    echo $login_session['Username']; ?> 
-                </h2>
+                
                 <?php include_once 'application/data/chunks/admin_navbar.php'; ?>
-  <h2>Customization page</h2>
+  <h2>Site settings page</h2>
   <?php echo validation_errors(); ?>
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
   <?php echo form_open(PRE_INDEX_URL.'index.php/Customization/customize');?>
@@ -26,24 +21,24 @@ include_once 'application/data/chunks/heading.php';
   </select>
   </p>
   <p>Site name (used in Brand):<br />
-  <input type="text" name="site_name" value="<?php echo $query[1]; ?>"/>
+  <input type="text" name="site_name" class="form-control" value="<?php echo $query[1]; ?>"/>
   </p>
   <p>Site Title (used in Title):<br />
-  <input type="text" name="site_title" value="<?php echo $query[2]; ?>"/>
+  <input type="text" name="site_title" class="form-control" value="<?php echo $query[2]; ?>"/>
   </p>
   <p>Site Copyright (used in Footer):<br />
-  <input type="text" name="copyright_info" value="<?php echo $query[3]; ?>"/>
+  <input type="text" name="copyright_info" class="form-control" value="<?php echo $query[3]; ?>"/>
   </p>
   <p>Blog Title (used on a Blog Page/Homepage):<br />
-  <input type="text" name="blog_title" value="<?php echo $query[4]; ?>"/>
+  <input type="text" name="blog_title" class="form-control" value="<?php echo $query[4]; ?>"/>
   </p>
   <p>Blog Title Image (used on a Blog Page/Homepage):<br />
-  <input type="text" name="jumbotron_image" value="<?php echo $query[5]; ?>"/>
+  <input type="text" name="jumbotron_image" class="form-control" value="<?php echo $query[5]; ?>"/>
   </p>
   <p>Favicon:<br />
-  <input type="text" name="favicon" value="<?php echo $query[6]; ?>"/>
+  <input type="text" name="favicon" class="form-control" value="<?php echo $query[6]; ?>"/>
   </p>
-  <input type="submit" value="Submit" />
+  <input type="submit" value="Submit" class="btn white-btn" />
   <?php echo form_close();?>
             </div>
         </div>

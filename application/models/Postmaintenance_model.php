@@ -1,6 +1,6 @@
 <?php
 
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 class Postmaintenance_model extends CI_Model
 {
     
@@ -26,7 +26,7 @@ function get_all_posts()
                 $name = $namecont[0]->nodeValue;
                 
                 $postArray[$num] = '<div><h2>'.$name.'</h2>'.'<a href="'.PRE_INDEX_URL.'index.php/PostMaintenance/delete?id='.$file.'">Delete</a>'
-                        .'<a href="'.PRE_INDEX_URL.'index.php/PostMaintenance/toUpdate?id='.$file.'">Update</a>'. '</div>';                
+                        .' <a href="'.PRE_INDEX_URL.'index.php/PostMaintenance/toUpdate?id='.$file.'">Update</a>'. '</div>';                
         }        
         
         krsort($postArray);
@@ -39,9 +39,13 @@ function get_all_posts()
         
         if(unlink('application/data/posts/'.$whichpost))
         {
-           echo 'deleted';
+           $this->session->set_flashdata('message', 'Post deleted!');
+           redirect(PRE_INDEX_URL.'index.php/PostMaintenance/index');
         }
-        else die('Can not delete the post');
+        else {
+           $this->session->set_flashdata('message', 'Unnable to delete!');
+           redirect(PRE_INDEX_URL.'index.php/PostMaintenance/index');
+        }
         
     }
     

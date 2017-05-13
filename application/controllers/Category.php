@@ -1,6 +1,6 @@
 <?php
 
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 class Category extends CI_Controller
 {
     function __construct()
@@ -43,7 +43,8 @@ class Category extends CI_Controller
             $name = $this->input->post('category_name');
             $name = mb_ereg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $name);
             $name = mb_ereg_replace("([\.]{2,})", '', $name);            
-            
+            $name = str_replace(' ', '_', $name);
+			
             $this->category_model->add_new_category($name);
             $this->session->set_flashdata('message', 'New category added!');
             redirect(PRE_INDEX_URL.'index.php/category/');

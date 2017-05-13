@@ -7,19 +7,14 @@ include_once 'application/data/chunks/heading.php';
 
         <div class="row">
             <div class="col-xs-12">
-                <form class="navbar-form navbar-right" role= "search" action="<?php echo PRE_INDEX_URL; ?>index.php/logout/logout"> 
-                        <button type="submit" class="btn btn-default"> Logout</button> 
-                </form> 
-                <h2>Welcome to the system, <?php $this->load->library('session'); $login_session = $this->session->userdata('userlogin'); 
-                    echo $login_session['Username']; ?> 
-                </h2>
+                
                 <?php include_once 'application/data/chunks/admin_navbar.php'; ?>
-  <h2>Homepage edit</h2> 
+  <h2>Edit Homepage</h2> 
   <?php echo form_open(PRE_INDEX_URL.'index.php/Homepage/update');?>
   <p>
   <textarea id="homepage" name="homepage" rows="30" style="resize:none;"><?php echo $query; ?></textarea>
   </p>  
-  <input type="submit" value="Submit" />
+  <input type="submit" value="Submit" class="btn white-btn" style="margin-bottom: 10px;" />
   <?php echo form_close();?>
             </div>
         </div>

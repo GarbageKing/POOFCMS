@@ -7,32 +7,29 @@ include_once 'application/data/chunks/heading.php';
 
         <div class="row">
             <div class="col-xs-12">
-                <form class="navbar-form navbar-right" role= "search" action="<?php echo PRE_INDEX_URL; ?>index.php/logout/logout"> 
-                        <button type="submit" class="btn btn-default"> Logout</button> 
-                </form> 
-                <h2>Welcome to the system, <?php $this->load->library('session'); $login_session = $this->session->userdata('userlogin'); 
-                    echo $login_session['Username']; ?> 
-                </h2>
+                
                 <?php include_once 'application/data/chunks/admin_navbar.php'; ?>
-  <h2>Files page</h2>
+  <h2>Files</h2>
  <?php if(isset($error)){ echo $error;} ?>
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?> 
   
   <div class="row">
       <div class="col-md-6">
+          <h3>Upload new</h3>
 <?php echo form_open_multipart(PRE_INDEX_URL.'index.php/Files/upload');?>
 
 <input type="file" name="userfile" size="20" />
 
 <br /><br />
 
-<input type="submit" value="upload" />
+<input type="submit" value="Upload" class="btn white-btn" />
 
 </form>
 </div>
 
       <div class="col-md-6">
-          <ul>
+          <h3>Uploaded files</h3>
+          <ul class="file-list">
               <?php foreach($files_uploaded as $item){
                         
                         echo '<li>'.$item.'</li>';

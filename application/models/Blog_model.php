@@ -1,5 +1,5 @@
  <?php 
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 class Blog_model extends CI_Model
 {
     function __construct()
@@ -38,9 +38,18 @@ class Blog_model extends CI_Model
                 $catcont = $doc->getElementsByTagName('title');               
                 $category = $catcont[0]->nodeValue;
                 
+                if($doc->getElementsByTagName('img')[0]){      
+                    $first_image = $doc->getElementsByTagName('img')[0]->getAttribute('src');
+                    $first_image = '<img src="'.$first_image.'" class="previmage"/>';
+                }
+                else
+                {
+                    $first_image = '';
+                }
+                
                 if($urlCategory == '' || $urlCategory == $category)
                 {
-                    $postArray[$num][0] = '<article><h2>'.$name.'</h2><br>';
+                    $postArray[$num][0] = '<article><h2>'.$name.'</h2><br>'.$first_image;
                     $postArray[$num][1] = $desc;
                     $postArray[$num][2] = '<br><p><a href="'.PRE_INDEX_URL.'index.php/post?id='.$file.'">Read more</a></p></article>'; 
                     

@@ -1,6 +1,6 @@
 <?php
 
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 class Menu_model extends CI_Model
 {
     
@@ -25,17 +25,17 @@ function get_all_items()
                     {                  
                         $item = $itm->nodeValue;
                         $input = $cont2[$i]->nodeValue;
-                        $data[] = '<input type="text" name="'.$item.'" value="'.$input.'"/>';
+                        $data[] = '<div class="col-xs-6"><input type="text" name="'.$item.'" class="form-control" value="'.$input.'"/></div>';
                     
                         $i++;
                     }
                
         $countdata = count($data);
         $input = 'input'.$countdata;
-        $data[] = '<input type="text" name="'.$input.'" value=""/>';
+        $data[] = '<div class="col-xs-6"><input type="text" name="'.$input.'" class="form-control" value=""/></div>';
         $countdata = $countdata + 1;
         $input = 'input'.$countdata;
-        $data[] = '<input type="text" name="'.$input.'" value=""/>';
+        $data[] = '<div class="col-xs-6"><input type="text" name="'.$input.'" class="form-control" value=""/></div>';
                 
         return $data;
     }    

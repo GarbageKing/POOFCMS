@@ -1,4 +1,4 @@
-<?php       
+<?php    
         
         if(strpos($uri, 'page=') !== false){
                 
@@ -60,8 +60,8 @@
         ?>
 
 <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-        <a class="pull-left" href="<?php echo PRE_INDEX_URL.$hrefPrev;?>">Previous</a>
-        <a class="pull-right" href="<?php echo PRE_INDEX_URL.$hrefNext;?>">Next</a>
+    <div class="paging col-md-10 col-md-offset-1">
+        <a class="pull-left" href="<?php echo PRE_INDEX_URL.$hrefPrev;?>"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Previous</a>
+        <a class="pull-right" href="<?php echo PRE_INDEX_URL.$hrefNext;?>">Next<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
     </div>
 </div>

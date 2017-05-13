@@ -1,6 +1,6 @@
 <?php
 
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 class Pagemaintenance_model extends CI_Model
 {
     
@@ -25,7 +25,7 @@ function get_all_pages()
                 $name = $namecont[0]->nodeValue;
                 
                 $pageArray[] = '<div><h2>'.$name.'</h2>'.'<a href="'.PRE_INDEX_URL.'index.php/PageMaintenance/delete?id='.$file.'">Delete</a>'
-                        .'<a href="'.PRE_INDEX_URL.'index.php/PageMaintenance/toUpdate?id='.$file.'">Update</a>'. '</div>';                
+                        .' <a href="'.PRE_INDEX_URL.'index.php/PageMaintenance/toUpdate?id='.$file.'">Update</a>'. '</div>';                
         }        
                 
         return $pageArray;
@@ -36,9 +36,13 @@ function get_all_pages()
         
         if(unlink('application/data/pages/'.$whichpage))
         {
-           echo 'deleted';
+           $this->session->set_flashdata('message', 'Page deleted!');
+           redirect(PRE_INDEX_URL.'index.php/PageMaintenance/index');
         }
-        else die('Can not delete the post');
+        else {
+           $this->session->set_flashdata('message', 'Unnable to delete!');
+           redirect(PRE_INDEX_URL.'index.php/PageMaintenance/index');
+        }
         
     }
     

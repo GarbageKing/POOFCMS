@@ -1,6 +1,5 @@
 /* 
-    Created on : 06.05.2017, 11:57:02
-    Author     : ERROR
+    Author     : Garbage_kinG
 */
 
 
@@ -23,4 +22,65 @@ textarea#styles
 {
     color: #000;
     width: 70%;
+}
+
+.previmage
+{
+max-height: 200px;
+width: auto; 
+}
+
+#sorting
+{
+    margin-bottom: 20px;
+}
+
+.blog_cats
+{
+    list-style-type: none;
+    text-transform: capitalize;
+    padding-left: 10px;
+}
+
+.blog_cats li
+{    
+    padding-top: 10px;
+    border-bottom: 2px solid #01c0c3;
+}
+
+.white-btn
+{
+    background-color: rgba(255, 255, 255, 0);
+    border-color: #fff;
+    color: #f8f4ee;
+}
+
+.white-btn:hover
+{
+    color:#f8f4ee;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.list-div
+{
+    max-height: 600px;
+    overflow: auto;
+}
+
+input[type=file]
+{
+    color: #f8f4ee;
+}
+
+.file-list, .a_category-list
+{
+    list-style-type: none;
+    padding-left: 10px;
+    max-height: 600px;
+    overflow: auto;
+}
+
+.file-list li a, .a_category-list li a
+{    
+    padding-left: 10px;
 }
