@@ -31,7 +31,7 @@ $categories = get_categories();
   
   foreach ($query as $post){      
       $subs = '<time>'.explode('<time>',strip_tags($post[1], '<time>'))[1];
-      echo $post[0] . mb_substr($subs, 0, 200) . $post[2].'<br>';
+      echo $post[0] . mb_substr($subs, 0, 200). '...' . $post[2].'<br>';
   }
       ?>
             </div>
