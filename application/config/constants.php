@@ -87,4 +87,4 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 define('username', 'admin');
 define('password', 'admin1');
 
-define('PRE_INDEX_URL', "http://localhost/poofcms/");
+define('PRE_INDEX_URL', "http://your_url_until_index_here");

@@ -19,7 +19,7 @@ include_once 'application/data/chunks/heading.php';
   <p>Body:<br />
   <textarea id="rTextarea" name="entry_body" rows="5" cols="50" style="resize:none;"><?php echo $query[1]; ?></textarea>
   </p>
-  <input type="submit" value="Submit" />
+  <input type="submit" value="Submit" class="btn white-btn" style="margin-bottom: 10px;" />
   <?php echo form_close();?>
             </div>
         </div>

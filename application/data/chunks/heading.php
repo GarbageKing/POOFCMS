@@ -17,6 +17,7 @@ $menu = get_menu();
   <?php if($maindata[6] != ''){ ?>
   <link rel='shortcut icon' type='image/x-icon' href='<?php echo PRE_INDEX_URL."assets/files/".$maindata[6]; ?>' />
   <?php } ?>
+  <link href="<?php echo PRE_INDEX_URL."assets/css/lightbox.css"; ?>" rel="stylesheet">
 </head>
  
 <body>

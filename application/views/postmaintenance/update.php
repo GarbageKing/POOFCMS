@@ -32,7 +32,7 @@ $categories = get_categories();
       <?php } ?>                            
   </select>
   </p>
-  <input type="submit" value="Submit" />
+  <input type="submit" value="Submit" class="btn white-btn" style="margin-bottom: 10px;" />
   <?php echo form_close();?>
             </div>
         </div>
